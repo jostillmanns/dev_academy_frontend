@@ -44,7 +44,7 @@ export default {
 	namespace () {
 	    return this.$route.params.color;
 	},
-	...mapGettersByNamespace([
+	...mapGettersByNamespace('namespace', [
 	    'getColor',
 	])
     },
