@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, createNamespacedHelpers } from 'vuex';
+import { mapActions } from 'vuex';
 import Todo from './Todo.vue';
-import { mapGettersByNamespace } from './vuex/modules';
+import { mapGetters } from './vuex/modules';
   
 export default {
     name: 'TodoList',
@@ -36,17 +36,17 @@ export default {
 	Todo,
     },
     computed: {
-	...mapGetters([
+	...mapGetters({ getters: [
 	    'loadingTodos',
 	    'todos',
 	    'todoRequestError',
-	]),
+	]}),
 	namespace () {
 	    return this.$route.params.color;
 	},
-	...mapGettersByNamespace('namespace', [
+	...mapGetters({ prop: 'namespace', getters: [
 	    'getColor',
-	])
+	]})
     },
     methods: {
 	...mapActions([
