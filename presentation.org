@@ -1,0 +1,58 @@
+* ES6 modules
+
+  *motivation* as Vue components are compiled to es6 modules
+
+** (very short) introduction
+
+   | export default {}                     | import myModule from './my-module.js      |
+   | export const myObject {}              | import { myObject } from './my-module.js' |
+   | dir: { index.js, some-other-file.js } | import * from './dir'                     |
+
+* Vue components
+
+  #+begin_src vue
+    <template>
+      <div :id="someStaticProperty">
+	{{ someComputedProperty }}
+      </div>
+    </template>
+
+    <script>
+    export default {
+	name: 'MyComponent',
+	data () {
+	    return {
+		someStaticProperty: 'foo',
+	    };
+	},
+	props: {
+	    someProperty: {
+		type: String,
+		default: 'bar',
+	    }
+	},
+	computed: {
+	    someComputedProperty () {
+		return this.someStaticProperty + 'bar';
+	    }
+	},
+	methods: {
+	    throwSomeEvent() {
+		this.$emit('fooEvent');
+	    }
+	},
+	mounted() {
+	    this.someStaticProperty = 'foobaz';
+	},
+    };
+    </script>
+  #+end_src
+
+* References
+
+  https://hn.algolia.com/?query=David%20Nolen&sort=byPopularity&prefix&page=0&dateRange=all&type=story
+  https://github.com/Day8/re-frame
+  https://hitmeister.atlassian.net/wiki/spaces/DEV/pages/191397919/things+we+did+in+the+ticket+system+that+we+want+to+avoid
+  https://purelyfunctional.tv/article/react-vs-re-frame/
+  https://vuex.vuejs.org/en/core-concepts.html
+  http://elbenshira.com/blog/trifecta-clojurescript-om-coreasync/
